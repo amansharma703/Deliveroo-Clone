@@ -6,7 +6,7 @@ export default {
         {
             name: "title",
             type: "string",
-            title: "Restaurant name",
+            title: "Dish name",
             validation: (Rule) => Rule.required(),
         },
         {
@@ -23,7 +23,7 @@ export default {
         {
             name: "image",
             type: "image",
-            title: "Image of Restaurant",
+            title: "Image of Dish",
         },
     ],
 };
