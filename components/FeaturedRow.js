@@ -1,9 +1,36 @@
 import { View, Text, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import RestaurantCard from "./Card/RestaurantCard";
+import sanityClient from "../sanity";
 
-const FeaturedRow = ({ id, title, description, featuredCategory }) => {
+const FeaturedRow = ({ id, title, description }) => {
+    const [restaurants, setRestaurants] = useState([]);
+
+    const fetchDataFromSanity = async () => {
+        await sanityClient
+            .fetch(
+                `*[_type == "featured" && _id == $id]{
+                    ...,
+                    restaurants[]->{
+                        ...,
+                        dishes[]->{
+                        ...,
+                        }
+                    }
+                }[0]
+            `,
+                { id }
+            )
+            .then((data) => {
+                setRestaurants(data?.restaurants);
+            });
+    };
+
+    useEffect(() => {
+        fetchDataFromSanity();
+    }, [id]);
+
     return (
         <View>
             <View className='mt-4 flex flex-row items-center justify-between px-4'>
@@ -19,42 +46,23 @@ const FeaturedRow = ({ id, title, description, featuredCategory }) => {
                 showsHorizontalScrollIndicator={false}
                 className='pt-3'
             >
-                <RestaurantCard
-                    id={1}
-                    imgUrl='https://img.freepik.com/free-photo/flat-lay-batch-cooking-composition_23-2148765597.jpg?w=2000'
-                    title='Pizza'
-                    rating={4.5}
-                    genre='Italian'
-                    address='sda'
-                    short_des='love pizza'
-                    dishes={[]}
-                    long={20}
-                    lat={0}
-                />
-                <RestaurantCard
-                    id={1}
-                    imgUrl='https://img.freepik.com/free-photo/flat-lay-batch-cooking-composition_23-2148765597.jpg?w=2000'
-                    title='Pizza'
-                    rating={4.5}
-                    genre='Italian'
-                    address='sda'
-                    short_des='love pizza'
-                    dishes={[]}
-                    long={20}
-                    lat={0}
-                />
-                <RestaurantCard
-                    id={1}
-                    imgUrl='https://img.freepik.com/free-photo/flat-lay-batch-cooking-composition_23-2148765597.jpg?w=2000'
-                    title='Pizza'
-                    rating={4.5}
-                    genre='Italian'
-                    address='sda'
-                    short_des='love pizza'
-                    dishes={[]}
-                    long={20}
-                    lat={0}
-                />
+                {restaurants?.map((restaurant) => {
+                    return (
+                        <RestaurantCard
+                            key={restaurant._id}
+                            id={restaurant._id}
+                            imgUrl={restaurant.image}
+                            title={restaurant.title}
+                            rating={restaurant.rating}
+                            genre={restaurant.genre}
+                            address={restaurant.address}
+                            short_des={restaurant.short_des}
+                            dishes={restaurant.dishes}
+                            long={restaurant.long}
+                            lat={restaurant.lat}
+                        />
+                    );
+                })}
             </ScrollView>
         </View>
     );

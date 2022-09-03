@@ -1,13 +1,32 @@
 import { View, Text, TouchableOpacity, Image, Platform } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
+import { urlFor } from "../../sanity";
+import { useNavigation } from "@react-navigation/native";
 
 const RestaurantCard = ({ id, imgUrl, title, rating, genre, address, short_des, dishes, long, lat }) => {
+    const navigation = useNavigation();
     return (
-        <TouchableOpacity className='bg-white mr-3 shadow'>
+        <TouchableOpacity
+            className='bg-white mr-3 shadow'
+            onPress={() => {
+                navigation.navigate("Restaurant", {
+                    id,
+                    imgUrl,
+                    title,
+                    rating,
+                    genre,
+                    address,
+                    short_des,
+                    dishes,
+                    long,
+                    lat,
+                });
+            }}
+        >
             <Image
                 source={{
-                    uri: imgUrl,
+                    uri: urlFor(imgUrl).url(),
                 }}
                 className='h-36 w-64 rounded-sm'
             />
@@ -21,7 +40,7 @@ const RestaurantCard = ({ id, imgUrl, title, rating, genre, address, short_des, 
                 </View>
                 <View className='flex-row items-center space-x-1'>
                     <Ionicons name={Platform.OS === "android" ? "location-outline" : "ios-location-outline"} size={20} color='gray' />
-                    <Text className='text-sm text-gray-500'>Nearby . {address}</Text>
+                    <Text className='text-sm text-gray-500'>{address.slice(0, 15)} </Text>
                 </View>
             </View>
         </TouchableOpacity>

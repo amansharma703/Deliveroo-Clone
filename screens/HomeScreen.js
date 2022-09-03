@@ -35,7 +35,6 @@ const HomeScreen = () => {
     useEffect(() => {
         fetchDataFromSanity();
     }, []);
-    console.log(featuredCategories);
     return (
         <SafeAreaView className='bg-white pt-2'>
             <View className='flex flex-row pb-3 items-center mx-4 space-x-2'>
@@ -73,8 +72,17 @@ const HomeScreen = () => {
                 }}
             >
                 <Categories />
-                <FeaturedRow title='featured' description='Featured' featuredCategory='data' />
-                <FeaturedRow title='Explore' description='Explore' featuredCategory='data' />
+                {featuredCategories?.map((category) => {
+                    return (
+                        <FeaturedRow
+                            key={category._id}
+                            id={category._id}
+                            title={category.name}
+                            description={category.short_des}
+                            featuredCategory='data'
+                        />
+                    );
+                })}
             </ScrollView>
         </SafeAreaView>
     );

@@ -37,7 +37,7 @@ export default {
             validation: (Rule) => Rule.required(),
         },
         {
-            name: "addres",
+            name: "address",
             type: "string",
             title: "Restaurant address",
             validation: (Rule) => Rule.required(),
