@@ -47,14 +47,14 @@ const HomeScreen = () => {
                 <View className='flex-1'>
                     <Text className='font-bold text-gray-400 text-xs'>Deliver Now!</Text>
                     <Text className='font-bold text-xl'>
-                        Cureent Location
+                        Current Location
                         <Ionicons name='chevron-down' size={20} color='#00CCBB' />
                     </Text>
                 </View>
                 <Ionicons name='person-outline' size={28} color='#00CCBB' />
             </View>
             <View className='flex-row items-center space-x-2 pb-2 mx-4'>
-                <View className='flex-1 items-center flex-row space-x-2  bg-gray-200 p-2'>
+                <View className='flex-1 items-center flex-row space-x-2 rounded-sm  bg-gray-200 p-2'>
                     <Ionicons name='search' size={20} color='gray' />
                     <TextInput
                         placeholder={"Restaurants and cuisines"}

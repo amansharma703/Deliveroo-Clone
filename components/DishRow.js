@@ -2,9 +2,22 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
 import { urlFor } from "../sanity";
 import { Entypo } from "@expo/vector-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { addTOCart, removeFromCart, selectCartItemById } from "../features/basketSlice";
 
 const DishRow = ({ id, name, description, image, price, imgUrl }) => {
     const [isPressed, setIsPressed] = useState(false);
+    const items = useSelector((state) => selectCartItemById(state, id));
+    const dispatch = useDispatch();
+
+    const addItemTOCart = () => {
+        dispatch(addTOCart({ id, name, description, price, image }));
+    };
+    const removeItemTOCart = () => {
+        if (!items.length > 0) return;
+        dispatch(removeFromCart({ id }));
+    };
+
     return (
         <>
             <TouchableOpacity className={`bg-white border p-4 border-gray-200 ${isPressed && "border-b-0"}`} onPress={() => setIsPressed(!isPressed)}>
@@ -31,11 +44,11 @@ const DishRow = ({ id, name, description, image, price, imgUrl }) => {
             {isPressed && (
                 <View className='bg-white px-4'>
                     <View className='flex-row items-center space-x-2 pb-2'>
-                        <TouchableOpacity>
-                            <Entypo name='circle-with-minus' size={30} color='#00CCBB' />
+                        <TouchableOpacity onPress={removeItemTOCart}>
+                            <Entypo name='circle-with-minus' size={30} color={items.length > 0 ? "#00CCBB" : "gray"} />
                         </TouchableOpacity>
-                        <Text className='text-lg'>0</Text>
-                        <TouchableOpacity>
+                        <Text className='text-lg'>{items.length}</Text>
+                        <TouchableOpacity onPress={addItemTOCart}>
                             <Entypo name='circle-with-plus' size={30} color='#00CCBB' />
                         </TouchableOpacity>
                     </View>
