@@ -38,7 +38,7 @@ const CartScreen = () => {
                             navigation.goBack();
                         }}
                     >
-                        <Entypo name='circle-with-cross' size={30} color='#00CCBB' />
+                        <Entypo name='circle-with-cross' size={30} color='#498fdd' />
                     </TouchableOpacity>
                 </View>
                 <View className='flex-row items-center space-x-4 px-4 py-3 bg-white my-5'>
@@ -50,7 +50,7 @@ const CartScreen = () => {
                     />
                     <Text className='flex-1 '>Deliver in 50-60 min </Text>
                     <TouchableOpacity>
-                        <Text className='text-[#00CCBB]'> Change</Text>
+                        <Text className='text-[#498fdd]'> Change</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -58,7 +58,7 @@ const CartScreen = () => {
                     {Object.entries(grouppedItemInCart).map(([key, items]) => {
                         return (
                             <View key={key} className='flex-row items-center space-x-3 bg-white py-2 px-5'>
-                                <Text className='text-[#00CCBB]'>{items.length} x</Text>
+                                <Text className='text-[#498fdd]'>{items.length} x</Text>
                                 <Image
                                     source={{
                                         uri: urlFor(items[0]?.image).url(),
@@ -68,7 +68,7 @@ const CartScreen = () => {
                                 <Text className='flex-1'> {items[0]?.name}</Text>
                                 <Text className='text-gray-600'> ₹ {items[0]?.price}</Text>
                                 <TouchableOpacity>
-                                    <Text className='text-[#00CCBB] text-sm' onPress={() => dispatch(removeFromCart({ id: key }))}>
+                                    <Text className='text-[#498fdd] text-sm' onPress={() => dispatch(removeFromCart({ id: key }))}>
                                         Remove
                                     </Text>
                                 </TouchableOpacity>
@@ -89,7 +89,12 @@ const CartScreen = () => {
                         <Text> Order Total</Text>
                         <Text className='font-extrabold'>₹ {cartTotal + 29}</Text>
                     </View>
-                    <TouchableOpacity className='rounded-lg bg-[#33CCBB] p-4'>
+                    <TouchableOpacity
+                        className='rounded-lg bg-[#498fdd] p-4'
+                        onPress={() => {
+                            navigation.navigate("PreparingOrder");
+                        }}
+                    >
                         <Text className='text-center text-white text-lg font-bold'>Place Order</Text>
                     </TouchableOpacity>
                 </View>

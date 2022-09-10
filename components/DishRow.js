@@ -45,11 +45,11 @@ const DishRow = ({ id, name, description, image, price, imgUrl }) => {
                 <View className='bg-white px-4'>
                     <View className='flex-row items-center space-x-2 pb-2'>
                         <TouchableOpacity onPress={removeItemTOCart}>
-                            <Entypo name='circle-with-minus' size={30} color={items.length > 0 ? "#00CCBB" : "gray"} />
+                            <Entypo name='circle-with-minus' size={30} color={items.length > 0 ? "#498fdd" : "gray"} />
                         </TouchableOpacity>
                         <Text className='text-lg'>{items.length}</Text>
                         <TouchableOpacity onPress={addItemTOCart}>
-                            <Entypo name='circle-with-plus' size={30} color='#00CCBB' />
+                            <Entypo name='circle-with-plus' size={30} color='#498fdd' />
                         </TouchableOpacity>
                     </View>
                 </View>

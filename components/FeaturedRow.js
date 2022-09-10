@@ -35,7 +35,7 @@ const FeaturedRow = ({ id, title, description }) => {
         <View>
             <View className='mt-4 flex flex-row items-center justify-between px-4'>
                 <Text className='font-medium text-lg'>{title}</Text>
-                <Ionicons name='ios-arrow-forward' size={28} color='#00CCBB' />
+                <Ionicons name='ios-arrow-forward' size={28} color='#498fdd' />
             </View>
             <Text className='text-xs text-gray-500 px-4'>{description}</Text>
             <ScrollView

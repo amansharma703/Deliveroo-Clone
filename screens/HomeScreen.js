@@ -48,10 +48,10 @@ const HomeScreen = () => {
                     <Text className='font-bold text-gray-400 text-xs'>Deliver Now!</Text>
                     <Text className='font-bold text-xl'>
                         Current Location
-                        <Ionicons name='chevron-down' size={20} color='#00CCBB' />
+                        <Ionicons name='chevron-down' size={20} color='#498fdd' />
                     </Text>
                 </View>
-                <Ionicons name='person-outline' size={28} color='#00CCBB' />
+                <Ionicons name='person-outline' size={28} color='#498fdd' />
             </View>
             <View className='flex-row items-center space-x-2 pb-2 mx-4'>
                 <View className='flex-1 items-center flex-row space-x-2 rounded-sm  bg-gray-200 p-2'>
@@ -63,7 +63,7 @@ const HomeScreen = () => {
                         textAlignVertical={"center"}
                     />
                 </View>
-                <Ionicons style name='filter' size={28} color='#00CCBB' />
+                <Ionicons style name='filter' size={28} color='#498fdd' />
             </View>
             <ScrollView
                 className='bg-gray-100'

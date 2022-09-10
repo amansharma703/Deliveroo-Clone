@@ -57,7 +57,7 @@ const RestaurantScreen = () => {
                             navigation.goBack();
                         }}
                     >
-                        <Ionicons name='arrow-back' size={25} color='#00CCBB' />
+                        <Ionicons name='arrow-back' size={25} color='#498fdd' />
                     </TouchableOpacity>
                 </View>
                 <View className='bg-white'>
@@ -65,9 +65,9 @@ const RestaurantScreen = () => {
                         <Text className='text-3xl font-bold mb-1'>{title}</Text>
                         <View className='flex-row space-x-2 items-center'>
                             <View className='flex-row space-x-2 items-center'>
-                                <Ionicons name={Platform.OS === "android" ? "star" : "ios-star"} size={20} color='#00CCBB' />
+                                <Ionicons name={Platform.OS === "android" ? "star" : "ios-star"} size={20} color='#498fdd' />
                                 <Text className='text-xs text-gray-500'>
-                                    <Text className='text-xs text-green-500'>{rating}</Text>.{genre}
+                                    <Text className='text-xs '>{rating}</Text>.{genre}
                                 </Text>
                             </View>
                             <View className='flex-row items-center space-x-1'>

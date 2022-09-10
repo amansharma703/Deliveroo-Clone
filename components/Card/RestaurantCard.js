@@ -33,9 +33,9 @@ const RestaurantCard = ({ id, imgUrl, title, rating, genre, address, short_des, 
             <View className='px-3 pb-4'>
                 <Text className='font-bold text-lg pt-2'>{title}</Text>
                 <View className='flex-row items-center space-x-1 pb-1'>
-                    <Ionicons name={Platform.OS === "android" ? "star" : "ios-star"} size={20} color='#00CCBB' />
+                    <Ionicons name={Platform.OS === "android" ? "star" : "ios-star"} size={20} color='#498fdd' />
                     <Text className='text-xs text-gray-500'>
-                        <Text className='text-xs text-green-500'>{rating}</Text>.{genre}
+                        <Text className='text-xs text-[#498fdd]'>{rating}</Text>.{genre}
                     </Text>
                 </View>
                 <View className='flex-row items-center space-x-1'>
